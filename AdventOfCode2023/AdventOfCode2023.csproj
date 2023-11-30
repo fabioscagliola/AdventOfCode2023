@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<AssemblyName>AdventOfCode2023</AssemblyName>
+		<AssemblyVersion>1.0</AssemblyVersion>
+		<Authors>Fabio Scagliola</Authors>
+		<Copyright>Fabio Scagliola 2023</Copyright>
+		<Description>Advent Of Code 2023</Description>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<OutputType>Exe</OutputType>
+		<Product>Advent Of Code 2023</Product>
+		<TargetFramework>net7.0</TargetFramework>
+	</PropertyGroup>
+
+</Project>
