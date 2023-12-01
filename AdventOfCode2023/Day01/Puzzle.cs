@@ -2,12 +2,37 @@ using System.Text.RegularExpressions;
 
 namespace com.fabioscagliola.AdventOfCode2023.Day01;
 
-class Puzzle : ISolvable
+abstract class Puzzle
 {
-    public object Solve(string input)
+    public static int ParseDigit(string s)
     {
-        char[] digits = "1234567890".ToCharArray();
+        switch (s)
+        {
+            case "one":
+                return 1;
+            case "two":
+                return 2;
+            case "three":
+                return 3;
+            case "four":
+                return 4;
+            case "five":
+                return 5;
+            case "six":
+                return 6;
+            case "seven":
+                return 7;
+            case "eight":
+                return 8;
+            case "nine":
+                return 9;
+            default:
+                return int.Parse(s);
+        }
+    }
 
+    protected static object Solve(string input, Regex regex)
+    {
         using StringReader stringReader = new(input);
 
         int sum = 0;
@@ -21,12 +46,32 @@ class Puzzle : ISolvable
             if (line == null)
                 break;
 
-            string digit1 = line.Substring(line.IndexOfAny(digits), 1);
-            string digit2 = line.Substring(line.LastIndexOfAny(digits), 1);
+            MatchCollection matches = regex.Matches(line);
 
-            sum += int.Parse(digit1 + digit2);
+            int digit1 = ParseDigit(matches.First().Value);
+            int digit2 = ParseDigit(matches.Last().Value);
+
+            sum += int.Parse($"{digit1}{digit2}");
         }
 
         return sum;
+    }
+}
+
+class Puzzle1 : Puzzle, ISolvable
+{
+    public object Solve(string input)
+    {
+        Regex regex = new(@"\d");
+        return Solve(input, regex);
+    }
+}
+
+class Puzzle2 : Puzzle, ISolvable
+{
+    public object Solve(string input)
+    {
+        Regex regex = new(@"\d|one|two|three|four|five|six|seven|eight|nine");
+        return Solve(input, regex);
     }
 }
