@@ -13,4 +13,10 @@
 		<TargetFramework>net7.0</TargetFramework>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<None Update="Day01\Input1.txt">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
 </Project>

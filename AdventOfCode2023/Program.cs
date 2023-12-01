@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿#nullable disable
+
+using System.Reflection;
 
 namespace com.fabioscagliola.AdventOfCode2023;
 
@@ -10,13 +12,13 @@ class Program
 
         List<Type> typeList = assembly.GetTypes().Where(type => type.GetInterface(nameof(ISolvable)) != null).ToList();
 
-        typeList.Sort((a, b) => a.FullName!.CompareTo(b.FullName));
+        typeList.Sort((a, b) => a.FullName.CompareTo(b.FullName));
 
         foreach (Type type in typeList)
         {
-            string path = type.Namespace!.Split('.').Last();
+            string path = type.Namespace.Split('.').Last();
 
-            string input = File.ReadAllText($"{path}\\Input1.txt");
+            string input = File.ReadAllText(Path.Combine(path, "Input1.txt"));
 
             ISolvable solvable = (ISolvable)Activator.CreateInstance(type);
 
